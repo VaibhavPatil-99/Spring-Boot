@@ -1,1 +1,69 @@
+package com.example.demo.Entities;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="students")
+public class Student {
+
+	@Id
+	private int RollNo;
+	private String Name;
+	private String email;
+	
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Laptop laptop;
+
+	public int getRollNo() {
+		return RollNo;
+	}
+
+	public void setRollNo(int rollNo) {
+		RollNo = rollNo;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Laptop getLaptop() {
+		return laptop;
+	}
+
+	public void setLaptop(Laptop laptop) {
+		this.laptop = laptop;
+	}
+
+	public Student(int rollNo, String name, String email, Laptop laptop) {
+		super();
+		RollNo = rollNo;
+		Name = name;
+		this.email = email;
+		this.laptop = laptop;
+	}
+
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}
 
