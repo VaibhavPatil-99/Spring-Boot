@@ -1,0 +1,28 @@
+package com.example.demo.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.Entities.Student;
+import com.example.demo.Repositories.StudentRepo;
+
+@RestController
+public class MyController {
+
+	@Autowired
+  StudentRepo studentRepo;
+	
+	@GetMapping("add")
+	public boolean add()
+	{
+	 Student student = new Student();
+		
+		student.setRollNo(101);
+		student.setName("vaibhav");
+		student.setEmail("vp@gmail.com");
+		
+		Student save = studentRepo.save(student);
+		return true;
+	}
+}
