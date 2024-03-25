@@ -2,27 +2,41 @@ package com.example.demo.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.Entities.Laptop;
 import com.example.demo.Entities.Student;
 import com.example.demo.Repositories.StudentRepo;
 
 @RestController
 public class MyController {
 
-	@Autowired
+  @Autowired
   StudentRepo studentRepo;
-	
-	@GetMapping("add")
+
+   
+    @GetMapping("add")
 	public boolean add()
 	{
-	 Student student = new Student();
+	    Student student = new Student();
 		
-		student.setRollNo(101);
-		student.setName("vaibhav");
-		student.setEmail("vp@gmail.com");
+		student.setRollNo(103);
+		student.setName("pratu");
+		student.setEmail("ps@gmail.com");
+			
+	
+		Laptop laptop = new Laptop();
+		laptop.setLaptopId(10);
+		laptop.setBrand("DELL");
+		laptop.setModelNo("del1234");
+		
+		laptop.setStudent(student);
+		student.setLaptop(laptop);
 		
 		Student save = studentRepo.save(student);
 		return true;
+		
 	}
+	
 }
