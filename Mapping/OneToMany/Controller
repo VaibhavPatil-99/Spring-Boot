@@ -1,0 +1,64 @@
+package com.example.demo.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.Entities.Address;
+import com.example.demo.Entities.Laptop;
+import com.example.demo.Entities.Student;
+import com.example.demo.Repositories.StudentRepo;
+
+@RestController
+public class MyController {
+
+  @Autowired
+  StudentRepo studentRepo;
+
+   
+    @GetMapping("add")
+	public boolean add()
+	{
+	    Student student = new Student();
+    	
+	  student.setRollNo(105);
+		student.setName("aadesh");
+		student.setEmail("ar@gmail.com");
+		
+		Address a1 = new Address();
+		a1.setAddressId(1001);
+		a1.setStreet("MG Road");
+		a1.setCity("Pune");
+		a1.setCountry("India");
+		a1.setStudent(student);
+		
+		Address a2 = new Address();
+		a2.setAddressId(1002);
+		a2.setStreet("Tilak Road");
+		a2.setCity("Mumbai");
+		a2.setCountry("India");
+		a2.setStudent(student);
+		
+		Address a3 = new Address();
+		a3.setAddressId(1003);
+		a3.setStreet("sp Road");
+		a3.setCity("Delhi");
+		a3.setCountry("India");
+		a3.setStudent(student);
+		
+		List<Address> addressList = new ArrayList<>();
+		addressList.add(a1);
+		addressList.add(a2);
+		addressList.add(a3);
+		student.setAddressList(addressList);
+		
+		Student save = studentRepo.save(student);
+		return true;
+		
+	}
+	
+}
